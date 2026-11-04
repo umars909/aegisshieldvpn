@@ -1,0 +1,192 @@
+{
+  "entities": {
+    "UserAccount": {
+      "title": "User Account Profile and VPN Preferences",
+      "description": "Stores user VPN settings, biometric preference, encryption protocol, and subscription state.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Authentication user UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "subscriptionPlan": {
+          "type": "string",
+          "description": "Current plan: trial, monthly, 1-year, 2-year"
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "description": "Subscription status: active, trial, expired, cancelled"
+        },
+        "trialEndsAt": {
+          "type": "string",
+          "description": "ISO timestamp for free trial expiration"
+        },
+        "protocol": {
+          "type": "string",
+          "description": "Selected tunnel protocol: WireGuard, OpenVPN-UDP, OpenVPN-TCP, IKEv2, Stealth"
+        },
+        "killSwitch": {
+          "type": "boolean",
+          "description": "Whether network kill switch is enabled"
+        },
+        "cyberShield": {
+          "type": "boolean",
+          "description": "Whether malicious ads/tracker blocking is enabled"
+        },
+        "biometricEnabled": {
+          "type": "boolean",
+          "description": "Whether biometric lock is activated"
+        },
+        "totalUploadBytes": {
+          "type": "number",
+          "description": "Cumulative total uploaded data in bytes"
+        },
+        "totalDownloadBytes": {
+          "type": "number",
+          "description": "Cumulative total downloaded data in bytes"
+        },
+        "threatsBlocked": {
+          "type": "number",
+          "description": "Cumulative count of security threats and trackers blocked"
+        },
+        "lastConnectedServer": {
+          "type": "string",
+          "description": "Identifier of the last connected VPN server node"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["userId", "email"]
+    },
+    "VpnSession": {
+      "title": "VPN Connection Session Log",
+      "description": "Records individual secure session duration, virtual IP, and data throughput.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique session ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the session owner"
+        },
+        "serverId": {
+          "type": "string",
+          "description": "Server identifier"
+        },
+        "serverCountry": {
+          "type": "string",
+          "description": "Country of the VPN server"
+        },
+        "serverCity": {
+          "type": "string",
+          "description": "City location of the VPN server"
+        },
+        "virtualIp": {
+          "type": "string",
+          "description": "Anonymized virtual IP assigned to tunnel"
+        },
+        "protocol": {
+          "type": "string",
+          "description": "Encryption protocol used"
+        },
+        "bytesUp": {
+          "type": "number",
+          "description": "Bytes uploaded during session"
+        },
+        "bytesDown": {
+          "type": "number",
+          "description": "Bytes downloaded during session"
+        },
+        "durationSeconds": {
+          "type": "number",
+          "description": "Session duration in seconds"
+        },
+        "startedAt": {
+          "type": "string",
+          "description": "Connection start ISO time"
+        },
+        "endedAt": {
+          "type": "string",
+          "description": "Connection disconnect ISO time"
+        }
+      },
+      "required": ["id", "userId", "serverId"]
+    },
+    "SubscriptionInvoice": {
+      "title": "Subscription Billing Receipt and Order",
+      "description": "Stores user invoice and subscription transaction details.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Invoice reference ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the subscribing customer"
+        },
+        "plan": {
+          "type": "string",
+          "description": "Plan purchased: trial, monthly, 1-year, 2-year"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Total charge in USD"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code (USD)"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Payment gateway/method used"
+        },
+        "status": {
+          "type": "string",
+          "description": "Payment status: paid, refunded, trial"
+        },
+        "invoiceDate": {
+          "type": "string",
+          "description": "Invoice date timestamp"
+        }
+      },
+      "required": ["id", "userId", "plan", "amount", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "UserAccount"
+      },
+      "description": "Contains user private configuration and lifetime usage analytics"
+    },
+    "/users/{userId}/sessions/{sessionId}": {
+      "schema": {
+        "$ref": "VpnSession"
+      },
+      "description": "Historical VPN connection sessions for the user"
+    },
+    "/users/{userId}/invoices/{invoiceId}": {
+      "schema": {
+        "$ref": "SubscriptionInvoice"
+      },
+      "description": "Subscription orders and billing history for the user"
+    }
+  }
+}

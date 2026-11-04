@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Light Mode Overrides for Crisp Security Suite Aesthetics */
+.light-theme {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.light-theme header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light-theme header span.text-white {
+  color: #0f172a !important;
+}
+
+.light-theme .bg-slate-900 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.light-theme .text-white {
+  color: #0f172a !important;
+}
+
+.light-theme .text-slate-400 {
+  color: #64748b !important;
+}
+
+.light-theme .text-slate-300 {
+  color: #334155 !important;
+}
+
+.light-theme .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+.light-theme .border-slate-700 {
+  border-color: #cbd5e1 !important;
+}

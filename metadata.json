@@ -1,0 +1,8 @@
+{
+  "name": "AegisShield VPN",
+  "description": "Next-generation secure VPN client featuring military-grade encryption, zero-logs policy, kill switch, global high-speed servers, and AI network threat intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
